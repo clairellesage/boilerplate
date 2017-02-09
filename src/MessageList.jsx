@@ -11,7 +11,7 @@ class MessageList extends Component {
      	{
         this.props.messages.map(function(message) {
      		  return (
-     		    <Message key={message.id} 
+     		    <Message key={message.uuid} 
                      message={message.content}
                      user={message.username}
             />

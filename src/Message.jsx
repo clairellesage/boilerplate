@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 
-
-
 class Message extends Component {
 	usernameExists(username) {
-		if (!this.props.user){
+		if (this.props.user === ""){
 			return "Anonymous";
 		} else {
 			return this.props.user;
