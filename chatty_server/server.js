@@ -32,15 +32,40 @@ wss.broadcast = function broadcast(data) {
 wss.on('connection', (ws) => {
   console.log('Client connected');
 
-	ws.on('message', (message) => {
-		let parsedMsg = JSON.parse(message)
-		let messageToClient = {
-			uuid: uuid.v4(),
-			username: parsedMsg.username,
-			content: parsedMsg.content
-		}
-		wss.broadcast(JSON.stringify(messageToClient))
-	})
+  ws.on('message', (message) => {
+  	console.log("beginning message", message)
+
+  	let parsedMsg = JSON.parse(message)
+  	console.log("Message type!", parsedMsg, parsedMsg.type)
+
+  	if (parsedMsg.type === "postNotification") {
+  		parsedMsg.type = "incomingNotification";
+  		parsedMsg.username = parsedMsg.username;
+  		parsedMsg.content = parsedMsg.content;
+	  } else if (parsedMsg.type === "postMessage") {
+	  	parsedMsg.type = "incomingMessage";
+	  	parsedMsg.uuid = uuid.v4();
+	  	parsedMsg.username = parsedMsg.username;
+	  	parsedMsg.content = parsedMsg.content;
+	  } else {
+	  	console.log("Error!")
+	  }
+	  console.log("message at end", parsedMsg)
+	  wss.broadcast(JSON.stringify(parsedMsg))
+  	// wss.broadcast(JSON.stringify(nameChangeToClient));
+  })
+
+	// ws.on('message', (message) => {
+	// 	console.log("message triggered", message)
+	// 	let parsedMsg = JSON.parse(message)
+	// 	let messageToClient = {
+	// 		type: "incomingMessage",
+	// 		uuid: uuid.v4(),
+	// 		username: parsedMsg.username,
+	// 		content: parsedMsg.content
+	// 	}
+	// 	wss.broadcast(JSON.stringify(message));
+	// })	
 
   // Set up a callback for when a client closes the socket. This usually means they closed their browser.
   ws.on('close', () => console.log('Client disconnected'));

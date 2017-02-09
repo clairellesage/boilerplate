@@ -11,12 +11,11 @@ class MessageList extends Component {
      	{
         this.props.messages.map(function(message) {
      		  return (
-     		    <Message key={message.uuid} 
-                     message={message.content}
-                     user={message.username}
-            />
+     		    <Message key ={message.uuid} 
+                         message={message}
+                />
      		  );
-     	  })
+     	})
      	}
      </div>
     );
