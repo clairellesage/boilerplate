@@ -24,7 +24,7 @@ class ChatBar extends Component {
 	        type="text" 
 	        placeholder="Your Name (Optional)" 
 	        defaultValue={this.props.currentUser}
-	        onKeyUp={(e) => this._handleUsernameChange(e)}
+	        onKeyPress={(e) => this._handleUsernameChange(e)}
 	       />
         <input 
         	id="new-message" 
