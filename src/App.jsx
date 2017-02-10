@@ -6,7 +6,7 @@ import MessageList from './MessageList.jsx';
 import ChatBar from './ChatBar.jsx';
 
 function randColour() {
-  const colours = ["‎00FFFF", "‎8E4585","‎00FF7F", "228b22"];
+  const colours = ["green", "‎pink","‎red", "blue"];
   const colourPick = Math.floor(Math.random() * 4)
   return colours[colourPick];
 }

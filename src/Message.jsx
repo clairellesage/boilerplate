@@ -8,16 +8,20 @@ class Message extends Component {
 			return this.props.message.username;
 		}
 	}
+	getStyles(userColour) {
+		console.log(userColour);
+    return {color: userColour}
+	}
   render() {
-  	console.log(this.props.message.userColour, "colour should be here")
+  	console.log(this.getStyles(this.props.message.userColour))
   	switch(this.props.message.type) {
   	  case "incomingMessage":
   	  	return (
   	    <div className="message" key={this.props.message.uuid}>
-  	      <span className="username" style={{color: `#${this.props.message.userColour}`}}>
+  	      <div className="username" style={this.getStyles(this.props.message.userColour)}>
   	      	{this.usernameExists(this.props.message.username)}
-  	      </span>
-  	      <span className="content">{this.props.message.content}</span>
+  	      </div>
+  	      <div className="content">{this.props.message.content}</div>
   	    </div>
   	    )
   	    break;
