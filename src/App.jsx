@@ -40,10 +40,6 @@ class App extends Component {
         case "userConnected":
           this.setState({usersConnected: data.numUsers});
           break;
-        // case "colours":
-        //   this.setState({userColours: data.userColour});
-        //   console.log(data.userColour, "colour is here");
-        //   break;
         default:
           // show an error in the console if the message type is unknown
           throw new Error("Unknown event type " + data.type);
